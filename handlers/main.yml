@@ -2,14 +2,14 @@
 - name: Postmap sasl_passwd
   command: "postmap {{ postfix_sasl_passwd_file }}"
 
-- name: Remove PID
-  file:
-    path: "~postfix/pid/master.pid"
-    state: absent
-  listen: Restart Postfix
-  when: >
-    (ansible_virtualization_role | default('host') == "guest")
-    and (ansible_virtualization_type | default('none') == "docker")
+# - name: Remove PID
+#   file:
+#     path: "~postfix/pid/master.pid"
+#     state: absent
+#   listen: Restart Postfix
+#   when: >
+#     (ansible_virtualization_role | default('host') == "guest")
+#     and (ansible_virtualization_type | default('none') == "docker")
 
 - name: Restart Service
   service:
