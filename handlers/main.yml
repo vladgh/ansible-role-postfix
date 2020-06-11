@@ -7,7 +7,9 @@
     path: "~postfix/pid/master.pid"
     state: absent
   listen: Restart Postfix
-  when: is_docker_guest
+  when: >
+    (ansible_virtualization_role | default('host') == "guest")
+    and (ansible_virtualization_type | default('none') == "docker")
 
 - name: Restart Service
   service:

@@ -24,7 +24,7 @@ jobs:
     - name: Install dependencies
       run: pip install molecule docker ansible-lint yamllint
     - name: Test
-      run: cd vladgh.postfix && molecule test --destroy=never
+      run: cd vladgh.postfix && molecule test
       env:
         MOLECULE_DISTRO: "${{ matrix.os }}"
   deploy:

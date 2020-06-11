@@ -1,8 +1,4 @@
 ---
-- name: Set facts
-  set_fact:
-    is_docker_guest: "{{ ansible_virtualization_role | default('host') == 'guest' and ansible_virtualization_type | default('none') == 'docker' }}"
-
 - name: Install Packages
   package:
     name: "{{ postfix_install_packages }}"
