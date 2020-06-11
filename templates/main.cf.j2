@@ -1,0 +1,16 @@
+# {{ ansible_managed }}
+
+# Hostname
+myhostname = {{ ansible_fqdn }}
+# SMTP relay host
+relayhost = [{{ smtp_server_address }}]:{{ smtp_server_port }}
+# Enable SASL authentication
+smtp_sasl_auth_enable = yes
+# Disallow methods that allow anonymous authentication.
+smtp_sasl_security_options = noanonymous
+# sasl_passwd path
+smtp_sasl_password_maps = hash:{{ postfix_sasl_passwd_file }}
+# Enable STARTTLS encryption
+smtp_use_tls = yes
+# CA certificates path
+smtp_tls_CAfile = {{ ca_bundle_cert_path }}

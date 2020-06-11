@@ -1,0 +1,13 @@
+---
+# Packages
+postfix_install_packages:
+  - postfix
+  - libsasl2-modules
+  - mailutils
+
+# CA Certificates Paths
+ca_bundle_cert_path: /etc/ssl/certs/ca-certificates.crt
+
+# Configuration
+postfix_main_cf_file: /etc/postfix/main.cf
+postfix_sasl_passwd_file: /etc/postfix/sasl_passwd

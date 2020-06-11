@@ -1,0 +1,8 @@
+---
+- name: Postmap sasl_passwd
+  command: "postmap {{ postfix_sasl_passwd_file }}"
+
+- name: Restart Postfix
+  service:
+    name: postfix
+    state: restarted

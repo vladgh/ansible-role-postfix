@@ -1,0 +1,32 @@
+---
+- name: Install Packages
+  package:
+    name: "{{ postfix_install_packages }}"
+    state: present
+
+- name: Update configuration file
+  template:
+    src: main.cf.j2
+    dest: "{{ postfix_main_cf_file }}"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart Postfix
+
+- name: Configure SASL username/password
+  template:
+    src: sasl_passwd.j2
+    dest: "{{ postfix_sasl_passwd_file }}"
+    owner: root
+    group: root
+    mode: '0600'
+  no_log: true
+  notify:
+    - Postmap sasl_passwd
+    - Restart Postfix
+
+- name: Ensure Postfix is started and enabled at boot
+  service:
+    name: postfix
+    state: started
+    enabled: yes
