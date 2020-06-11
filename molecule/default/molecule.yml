@@ -7,12 +7,9 @@ platforms:
   - name: instance
     image: "${MOLECULE_DISTRO:-ubuntu:20.04}"
     # command: /sbin/init
-    # tmpfs:
-    #   - /run
-    #   - /tmp
-    # volumes:
-    #   - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    # privileged: True
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
 provisioner:
   name: ansible
 lint: |
