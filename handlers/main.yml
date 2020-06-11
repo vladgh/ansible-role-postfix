@@ -2,7 +2,15 @@
 - name: Postmap sasl_passwd
   command: "postmap {{ postfix_sasl_passwd_file }}"
 
-- name: Restart Postfix
+- name: Remove PID
+  file:
+    path: "~postfix/pid/master.pid"
+    state: absent
+  listen: Restart Postfix
+  when: is_docker_guest
+
+- name: Restart Service
   service:
     name: postfix
     state: restarted
+  listen: Restart Postfix
