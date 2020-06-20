@@ -2,6 +2,7 @@
 
 # Hostname
 myhostname = {{ ansible_fqdn }}
+smtpd_banner = $myhostname ESMTP $mail_name (Debian/GNU)
 # SMTP relay host
 relayhost = [{{ smtp_server_address }}]:{{ smtp_server_port }}
 # Enable SASL authentication

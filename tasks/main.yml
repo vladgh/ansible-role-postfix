@@ -6,7 +6,7 @@
 
 - name: Update configuration file
   template:
-    src: main.cf.j2
+    src: etc/postfix/main.cf.j2
     dest: "{{ postfix_main_cf_file }}"
     owner: root
     group: root
@@ -15,7 +15,7 @@
 
 - name: Configure SASL username/password
   template:
-    src: sasl_passwd.j2
+    src: etc/postfix/sasl_passwd.j2
     dest: "{{ postfix_sasl_passwd_file }}"
     owner: root
     group: root
