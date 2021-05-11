@@ -15,3 +15,7 @@ smtp_sasl_password_maps = hash:{{ postfix_sasl_passwd_file }}
 smtp_use_tls = yes
 # CA certificates path
 smtp_tls_CAfile = {{ ca_bundle_cert_path }}
+# Header checks
+{% if postifx_header_checks_database_type and postfix_header_checks %}
+smtp_header_checks = {{ postifx_header_checks_database_type }}:{{ postfix_header_checks_file }}
+{% endif %}

@@ -25,6 +25,16 @@
     - Postmap sasl_passwd
     - Restart Postfix
 
+- name: Configure Header Checks
+  template:
+    src: etc/postfix/header_checks.j2
+    dest: "{{ postfix_header_checks_file }}"
+    owner: root
+    group: root
+    mode: '0644'
+  no_log: true
+  notify: Restart Postfix
+
 - name: Ensure Postfix is started and enabled at boot
   service:
     name: postfix
